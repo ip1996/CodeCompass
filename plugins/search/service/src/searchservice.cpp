@@ -14,6 +14,7 @@
 #include <model/file-odb.hxx>
 
 #include <util/logutil.h>
+#include <util/util.h>
 #include <util/dbutil.h>
 #include <util/odbtransaction.h>
 
@@ -113,6 +114,10 @@ void SearchServiceHandler::search(
   SearchResult& _return,
   const SearchParams& params_)
 {
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: search" << ", query: " << params_.query; 
+  cc::util::closeLogFileStream();
+
   std::lock_guard<std::mutex> lock(_javaProcessMutex);
 
   try
@@ -138,6 +143,10 @@ void SearchServiceHandler::searchFile(
     const SearchParams&     params_)
 {
   LOG(info) << "Search for file: query = " << params_.query;
+
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: search for file" << ", query: " << params_.query; 
+  cc::util::closeLogFileStream();
 
   odb::transaction t(_db->begin());
 

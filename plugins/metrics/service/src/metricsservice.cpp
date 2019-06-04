@@ -6,6 +6,9 @@
 
 #include <metricsservice/metricsservice.h>
 
+#include <util/logutil.h>
+#include <util/util.h>
+
 namespace cc
 {
 namespace service
@@ -29,6 +32,10 @@ void MetricsServiceHandler::getMetrics(
   const std::vector<std::string>& fileTypeFilter,
   const MetricsType::type metricsType)
 {
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get metrics" << ", FileId: " << fileId << ", MetricsType: " << metricsType; 
+  cc::util::closeLogFileStream();
+
   core::FileInfo fileInfo;
   _projectService.getFileInfo(fileInfo, fileId);
   _return = getMetricsFromDir(fileInfo, metricsType, fileTypeFilter);

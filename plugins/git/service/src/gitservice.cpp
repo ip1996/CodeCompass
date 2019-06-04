@@ -4,6 +4,7 @@
 #include <boost/property_tree/ini_parser.hpp>
 
 #include <util/dbutil.h>
+#include <util/util.h>
 #include <util/logutil.h>
 
 #include <service/gitservice.h>
@@ -88,6 +89,9 @@ std::string GitServiceHandler::getRepoPath(const std::string& repoId_) const
 
 void GitServiceHandler::getRepositoryList(std::vector<GitRepository>& return_)
 {
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get repositroy list"; 
+  cc::util::closeLogFileStream();
   namespace fs = ::boost::filesystem;
 
   fs::path versionDataDir(*_datadir + "/version");
@@ -128,19 +132,23 @@ void GitServiceHandler::getRepositoryList(std::vector<GitRepository>& return_)
     switch (git_reference_type(head.get()))
     {
       case GIT_REF_SYMBOLIC:
+      {
         LOG(warning) << "HEAD is symbolic reference, not supported yet.";
         break;
-
+      }
       case GIT_REF_OID:
+      {
         gitRepo.head
            = gitRepo.isHeadDetached
            ? gitOidToString(git_reference_target(head.get()))
            : git_reference_name(head.get());
         break;
-
+      }
       default:
+      { 
         LOG(warning) << "HEAD reference is not OID, nor symbolic.";
         break;
+      }
     }
 
     return_.push_back(std::move(gitRepo));
@@ -248,6 +256,9 @@ void GitServiceHandler::getBlameInfo(
   const std::string& path_,
   const std::string& localModificationsFileId_)
 {
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get blame info" << ", RepoId: " << repoId_ << ", Path: " << path_ << ", LocalModificationsFileId: " << localModificationsFileId_; 
+  cc::util::closeLogFileStream();
   RepositoryPtr repo = createRepository(repoId_);
 
   if (!repo)
@@ -318,6 +329,10 @@ void GitServiceHandler::getCommit(
   const std::string& repoId_,
   const std::string& hexOid_)
 {
+  cc::util::openLogFileStream();
+  LOG(info) << "Time: "<< util::getCurrentDate() << 
+    ", Type: get commit" << ", RepoId: " << repoId_; 
+  cc::util::closeLogFileStream();
   RepositoryPtr repo = createRepository(repoId_);
 
   if (!repo)

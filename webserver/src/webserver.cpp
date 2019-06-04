@@ -44,10 +44,12 @@ int main(int argc, char* argv[])
 {
   std::string compassRoot = cc::util::binaryPathToInstallDir(argv[0]);
 
+  LOG(info) << "Compass root directory: " << compassRoot;
+
   const std::string SERVICE_PLUGIN_DIR = compassRoot + "/lib/serviceplugin";
   const std::string WEBGUI_DIR = compassRoot + "/share/codecompass/webgui/";
 
-  cc::util::initLogger();
+  cc::util::initLogger(compassRoot);
  
   cc::webserver::MainRequestHandler requestHandler;
   requestHandler.pluginHandler.addDirectory(SERVICE_PLUGIN_DIR);

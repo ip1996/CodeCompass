@@ -157,14 +157,20 @@ void incrementalList(cc::parser::ParserContext& ctx_)
     switch (item.second)
     {
       case cc::parser::IncrementalStatus::ADDED:
+      {
         LOG(info) << "ADDED file: " << item.first;
         break;
+      }
       case cc::parser::IncrementalStatus::MODIFIED:
+      {
         LOG(info) << "MODIFIED file: " << item.first;
         break;
+      }    
       case cc::parser::IncrementalStatus::DELETED:
+      {
         LOG(info) << "DELETED file: " << item.first;
         break;
+      } 
     }
   }
 }
@@ -209,7 +215,7 @@ int main(int argc, char* argv[])
   const std::string PARSER_PLUGIN_DIR = compassRoot + "/lib/parserplugin";
   const std::string SQL_DIR = compassRoot + "/share/codecompass/sql";
 
-  cc::util::initLogger();
+  cc::util::initLogger(compassRoot);
 
   //--- Process command line arguments ---//
 
@@ -379,12 +385,13 @@ int main(int argc, char* argv[])
     {
       std::size_t pos = label.find('=');
 
-      if (pos == std::string::npos)
+      if (pos == std::string::npos) {
         LOG(warning)
           << "Label doesn't contain '=' for separating label and the path: "
           << label;
-      else
+      } else {
         labels.put(label.substr(0, pos), label.substr(pos + 1));
+      }
     }
 
     pt.add_child("labels", labels);
