@@ -9,7 +9,6 @@
 #include <model/cppastnode.h>
 #include <model/cppastnode-odb.hxx>
 
-#include <util/util.h>
 #include <util/logutil.h>
 
 #include <service/cppreparseservice.h>
@@ -73,10 +72,6 @@ void CppReparseServiceHandler::getAsHTML(
   std::string& return_,
   const core::FileId& fileId_)
 {
-  cc::util::openLogFileStream();
-  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get AST" << ", FileId: " << fileId_; 
-  cc::util::closeLogFileStream();
-
   if (!isEnabled())
   {
     return_ = "Reparse capabilities has been disabled at server start.";
@@ -101,10 +96,6 @@ void CppReparseServiceHandler::getAsHTMLForNode(
   std::string& return_,
   const core::AstNodeId& nodeId_)
 {
-  cc::util::openLogFileStream();
-  LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get AST for node" << ", NodeId: " << nodeId_; 
-  cc::util::closeLogFileStream();
-
   if (!isEnabled())
   {
     return_ = "Reparse capabilities has been disabled at server start.";
