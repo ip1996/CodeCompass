@@ -160,9 +160,9 @@ void CppServiceHandler::getDocumentation(
     std::string& return_,
     const core::AstNodeId& astNodeId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get documentation" << ", AstNodeId: " << astNodeId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   _transaction([&, this](){
     model::CppAstNode node = queryCppAstNode(astNodeId_);
@@ -1121,10 +1121,10 @@ void CppServiceHandler::getDiagram(
   const core::AstNodeId& astNodeId_,
   const std::int32_t diagramId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << 
     ", Type: get diagram" << ", AstNodeId: " << astNodeId_ << ", DiagramId: " << diagramId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   Diagram diagram(_db, _datadir, _context);
   util::Graph graph;
@@ -1152,9 +1152,9 @@ void CppServiceHandler::getDiagramLegend(
   std::string& return_,
   const std::int32_t diagramId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get diagram legend" << ", DiagramId: " << diagramId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
   Diagram diagram(_db, _datadir, _context);
 
   switch (diagramId_)
@@ -1201,10 +1201,10 @@ void CppServiceHandler::getFileDiagram(
   const core::FileId& fileId_,
   const int32_t diagramId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << 
     ", Type: get file diagram" << ", FileId: " << fileId_ << ", DiagramId: " << diagramId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   FileDiagram diagram(_db, _datadir, _context);
   util::Graph graph;

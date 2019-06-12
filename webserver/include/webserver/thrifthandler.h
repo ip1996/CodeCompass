@@ -11,6 +11,7 @@
 #include <thrift/protocol/TJSONProtocol.h>
 
 #include <util/logutil.h>
+#include <util/util.h>
 
 #include "mongoose.h"
 
@@ -117,6 +118,10 @@ public:
       std::string content = getContent(conn_);
 
       LOG(debug) << "Request content:\n" << content;
+      
+      cc::util::openLogFileStream();
+      LOG(info) << "CAddress: " << conn_->remote_ip << ",Time: "<< util::getCurrentDate() << ", Content: " << content; 
+      cc::util::closeLogFileStream();
 
       boost::shared_ptr<TTransport> inputBuffer(
         new TMemoryBuffer((std::uint8_t*)content.c_str(), content.length()));

@@ -89,9 +89,9 @@ std::string GitServiceHandler::getRepoPath(const std::string& repoId_) const
 
 void GitServiceHandler::getRepositoryList(std::vector<GitRepository>& return_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get repositroy list"; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
   namespace fs = ::boost::filesystem;
 
   fs::path versionDataDir(*_datadir + "/version");
@@ -256,9 +256,9 @@ void GitServiceHandler::getBlameInfo(
   const std::string& path_,
   const std::string& localModificationsFileId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get blame info" << ", RepoId: " << repoId_ << ", Path: " << path_ << ", LocalModificationsFileId: " << localModificationsFileId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
   RepositoryPtr repo = createRepository(repoId_);
 
   if (!repo)
@@ -329,10 +329,10 @@ void GitServiceHandler::getCommit(
   const std::string& repoId_,
   const std::string& hexOid_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << 
     ", Type: get commit" << ", RepoId: " << repoId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
   RepositoryPtr repo = createRepository(repoId_);
 
   if (!repo)

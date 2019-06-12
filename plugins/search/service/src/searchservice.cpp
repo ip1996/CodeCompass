@@ -114,9 +114,9 @@ void SearchServiceHandler::search(
   SearchResult& _return,
   const SearchParams& params_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: search" << ", query: " << params_.query; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   std::lock_guard<std::mutex> lock(_javaProcessMutex);
 
@@ -144,9 +144,9 @@ void SearchServiceHandler::searchFile(
 {
   LOG(info) << "Search for file: query = " << params_.query;
 
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: search for file" << ", query: " << params_.query; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   odb::transaction t(_db->begin());
 

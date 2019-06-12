@@ -73,9 +73,9 @@ void CppReparseServiceHandler::getAsHTML(
   std::string& return_,
   const core::FileId& fileId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get AST" << ", FileId: " << fileId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   if (!isEnabled())
   {
@@ -101,9 +101,9 @@ void CppReparseServiceHandler::getAsHTMLForNode(
   std::string& return_,
   const core::AstNodeId& nodeId_)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get AST for node" << ", NodeId: " << nodeId_; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   if (!isEnabled())
   {

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <boost/program_options.hpp>
+#include <boost/thread.hpp>
 
 #include "pluginhandler.h"
 #include "mongoose.h"

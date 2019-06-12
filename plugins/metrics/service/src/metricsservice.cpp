@@ -5,6 +5,7 @@
 #include <boost/property_tree/json_parser.hpp>
 
 #include <metricsservice/metricsservice.h>
+#include <webserver/requesthandler.h>
 
 #include <util/logutil.h>
 #include <util/util.h>
@@ -32,9 +33,9 @@ void MetricsServiceHandler::getMetrics(
   const std::vector<std::string>& fileTypeFilter,
   const MetricsType::type metricsType)
 {
-  cc::util::openLogFileStream();
+  /*cc::util::openLogFileStream();
   LOG(info) << "Time: "<< util::getCurrentDate() << ", Type: get metrics" << ", FileId: " << fileId << ", MetricsType: " << metricsType; 
-  cc::util::closeLogFileStream();
+  cc::util::closeLogFileStream();*/
 
   core::FileInfo fileInfo;
   _projectService.getFileInfo(fileInfo, fileId);
